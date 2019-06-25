@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG="MAIN ACTIVITY KE INSIDE";
     public CallbackManager mCallbackManager;
-    LoginButton loginButton;
+    //LoginButton loginButton;
     ImageView singin;
     ProgressBar progress;
     FirebaseUser user;
@@ -78,39 +78,41 @@ public class MainActivity extends AppCompatActivity {
 
 
         mCallbackManager = CallbackManager.Factory.create();
-         loginButton = findViewById(R.id.login_button);
 
-// ...
-loginButton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-
-        loginButton.setReadPermissions("email", "public_profile","user_friends");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-
-                startActivity(new Intent(MainActivity.this,ContentUploader.class));
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                // ...
-            }
-        });
-
-
-    }
-});
+        //FACEBOOK LOGIN CODE NOT WORKING
+//         loginButton = findViewById(R.id.login_button);
+//
+//// ...
+//loginButton.setOnClickListener(new View.OnClickListener() {
+//    @Override
+//    public void onClick(View view) {
+//
+//        loginButton.setReadPermissions("email", "public_profile","user_friends");
+//        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+//
+//                startActivity(new Intent(MainActivity.this,ContentUploader.class));
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Log.d(TAG, "facebook:onCancel");
+//                // ...
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Log.d(TAG, "facebook:onError", error);
+//                // ...
+//            }
+//        });
+//
+//
+//    }
+//});
 
         
     }

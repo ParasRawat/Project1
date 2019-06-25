@@ -21,14 +21,14 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         app:SpinKit_Color="@color/colorAccent" />
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="52dp" />
+    <!--<com.facebook.login.widget.LoginButton-->
+        <!--android:id="@+id/login_button"-->
+        <!--android:layout_width="250dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginBottom="52dp" />-->
 
     <!--<com.google.android.gms.common.SignInButton-->
         <!--android:id="@+id/sign_in_button"-->
@@ -43,7 +43,8 @@
         android:id="@+id/sign_in_button"
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:layout_above="@+id/login_button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/signin" />
+        android:src="@drawable/signin"
+        android:layout_margin="16dp"/>
 </RelativeLayout>
