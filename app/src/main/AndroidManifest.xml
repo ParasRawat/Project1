@@ -3,6 +3,10 @@
     package="com.example.parasrawat.projectinfroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +37,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContentUploader">
+        <activity android:name=".ContentUploader"
+            android:windowSoftInputMode="adjustNothing">
 
         </activity>
         <activity android:name=".IntroSlider">

@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.parasrawat.projectinfroid.ModelClasses.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,6 +26,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -31,6 +34,8 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView singin;
     ProgressBar progress;
     FirebaseUser user;
+    ImageView gsign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         progress=findViewById(R.id.progress);
         progress.setVisibility(View.INVISIBLE);
+        gsign=findViewById(R.id.sign_in_button);
+        //gsign.setVisibility(View.INVISIBLE);
 
         if (user != null) {
             // User is signed in
@@ -68,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
 
-        findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+        gsign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progress.setVisibility(View.VISIBLE);
@@ -114,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
 //    }
 //});
 
-        
     }
 
 
@@ -157,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success google");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(MainActivity.this,ContentUploader.class));
                             Toast.makeText(MainActivity.this,"User successfully logged in ",Toast.LENGTH_LONG).show();
 

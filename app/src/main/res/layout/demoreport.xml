@@ -5,128 +5,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/logoimage"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ngopng" />
-
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logoimage"
-        android:layout_centerHorizontal="true"
-        android:padding="8dp"
-        android:text="Report"
-        android:textColor="@color/colorAccent"
-        android:textSize="18dp"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/issuespinnercardview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="8dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/reprtheadercardiew"
-        android:layout_margin="8dp"
-        android:layout_alignParentLeft="true">
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/issuespinner"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/reprtheadercardiew"
-            android:layout_margin="4dp"
-            android:padding="8dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        </android.support.v7.widget.AppCompatSpinner>
-    </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/issuespinnercardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="8dp">
 
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/issuespinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/reprtheadercardiew"
+                    android:layout_margin="4dp"
+                    android:padding="8dp"/>
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/err_type"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please select a category"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/reprtheadercardiew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+
+                <EditText
+                    android:background="@drawable/textlayout"
+                    android:id="@+id/reprtheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="4dp"
+                    android:hint="Title/Heading"
+                    android:paddingLeft="8dp" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/err_th"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please provide valid title"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+
+                <EditText
+                    android:background="@drawable/textlayout"
+                    android:id="@+id/reportmessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/add"
+                    android:layout_margin="4dp"
+                    android:hint="Please write a short description"
+                    android:paddingLeft="10dp" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/err_td"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please provide brief description"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/addimg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:foreground="@android:drawable/ic_menu_add"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:foregroundTint="@color/colorAccent"/>
+
+            <ImageView
+                android:id="@+id/imgv1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"></ImageView>
+        </LinearLayout>
+    </ScrollView>
     <android.support.v7.widget.CardView
-        android:id="@+id/reprtheadercardiew"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        android:layout_below="@+id/header"
-        android:layout_alignParentLeft="true">
-
-        <EditText
-            android:background="@drawable/textlayout"
-            android:id="@+id/reprtheader"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/header"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"
-            android:hint="Short Header"
-            android:paddingLeft="4dp" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/add"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        android:layout_alignParentLeft="true">
-
-        <EditText
-            android:background="@drawable/textlayout"
-            android:id="@+id/reportmessage"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/add"
-            android:layout_margin="4dp"
-            android:hint="Please write a short description"
-            android:paddingLeft="10dp" />
-    </android.support.v7.widget.CardView>
-
-    <TextView
-        android:id="@+id/add"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@+id/issuespinnercardview"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
-        android:background="@drawable/textlayout"
-        android:padding="10dp"
-        android:text="You can also add otpional images" />
-
-    <android.support.v7.widget.CardView
+        android:id="@+id/b_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:cardElevation="8dp"
         app:cardCornerRadius="16dp"
-        android:background="@color/colorAccent"
-        android:layout_margin="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true">
         <TextView
-            android:textColor="@color/colorAccent"
+            android:textColor="#fff"
             android:textStyle="bold"
+            android:textSize="16sp"
             android:layout_width="240dp"
             android:layout_height="32dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
             android:padding="4dp"
             android:text="Submit"
             android:textAlignment="center" />
     </android.support.v7.widget.CardView>
-
 
 </RelativeLayout>

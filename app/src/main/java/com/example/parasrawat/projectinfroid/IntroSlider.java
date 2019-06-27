@@ -33,6 +33,5 @@ import android.widget.TextView;
             }
         };
         timer.start();
-
     }
 }

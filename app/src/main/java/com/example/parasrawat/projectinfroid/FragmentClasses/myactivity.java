@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,18 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.parasrawat.projectinfroid.Adapters.HorizontalAdaptor;
+import com.example.parasrawat.projectinfroid.ModelClasses.Report;
+import com.example.parasrawat.projectinfroid.ModelClasses.User;
 import com.example.parasrawat.projectinfroid.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class myactivity extends Fragment {
@@ -27,32 +37,78 @@ public class myactivity extends Fragment {
     ArrayList<Integer> photoarray=new ArrayList<>();
     ArrayList<String> issue=new ArrayList<>();
     ArrayList<String> description=new ArrayList<>();
+    public static final String TAG="myactivity";
 
-    TextView ratingmeter;
+    //TextView ratingmeter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.activity_my,container,false);
 
-        ratingmeter=view.findViewById(R.id.ratingcount);
-        photoarray.add(R.drawable.poverty);
-        issue.add("Poverty");
-        description.add("Poverty Description \n One of the major cause for Indias high reputation");
-        photoarray.add(R.drawable.childlabour);
-        issue.add("ChildLabour");
-        description.add("Child labour description \n Key factor to hamper tha hampers the youth of our country");
-        photoarray.add(R.drawable.garbage);
-        issue.add("Garbage");
-        description.add("Garbage description \n The current issue targetted by our government under SWATCH BHARAT ABHIYAN");
-        photoarray.add(R.drawable.women);
-        issue.add("Feminism");
-        description.add("Feminism description \n Need of equal rights for men and women");
+        final TextView tcount=view.findViewById(R.id.Contribution);
+        //ratingmeter=view.findViewById(R.id.ratingcount);
+//        issue.add("Poverty");
+//        description.add("Poverty Description \n One of the major cause for Indias high reputation");
+//        photoarray.add(R.drawable.childlabour);
+//        issue.add("ChildLabour");
+//        description.add("Child labour description \n Key factor to hamper tha hampers the youth of our country");
+//        photoarray.add(R.drawable.garbage);
+//        issue.add("Garbage");
+//        description.add("Garbage description \n The current issue targetted by our government under SWATCH BHARAT ABHIYAN");
+//        photoarray.add(R.drawable.women);
+//        issue.add("Feminism");
+//        description.add("Feminism description \n Need of equal rights for men and women");
+
         recyclerView=view.findViewById(R.id.horizontalrecyclerview);
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new HorizontalAdaptor(photoarray,issue,description,getContext());
-        recyclerView.setAdapter(adapter);
+
+        //fetch data
+        String username=FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        DatabaseReference dbrefu=FirebaseDatabase.getInstance().getReference("Users");
+        final DatabaseReference dbrefc=FirebaseDatabase.getInstance().getReference("Contributions");
+        dbrefu.child(username).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user=dataSnapshot.getValue(User.class);
+                Log.d(TAG+"user",user.toString());
+                Log.d(TAG+"datas",dataSnapshot.getValue().toString());
+                HashMap<String,String> contris=new HashMap<>();
+                if(user.getContributions()!=null) {
+                    contris = user.getContributions();
+                    for (HashMap.Entry<String,String> entry:contris.entrySet()) {
+                        Log.d(TAG+"contriid",entry.getValue());
+                        dbrefc.child(entry.getKey()).child(entry.getValue()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Report report=dataSnapshot.getValue(Report.class);
+                                Log.d(TAG+"datasn",dataSnapshot.getValue().toString());
+                                photoarray.add(R.drawable.poverty);
+                                issue.add(report.getTitle());
+                                description.add(report.getDesc());
+
+                                adapter=new HorizontalAdaptor(photoarray,issue,description,getContext());
+                                recyclerView.setAdapter(adapter);
+                                tcount.setText("Total Contributions = "+issue.size());
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                //TODO else "start contributing"
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         return view;
     }
 }
