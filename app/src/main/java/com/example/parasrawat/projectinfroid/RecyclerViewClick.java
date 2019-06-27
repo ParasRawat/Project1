@@ -32,14 +32,15 @@ public class RecyclerViewClick extends AppCompatActivity {
             String imageurl=getIntent().getStringExtra("image_url");
             String imageissue=getIntent().getStringExtra("image_issue");
             String imagedesc=getIntent().getStringExtra("image_desc");
+            String reportstatus=getIntent().getStringExtra("report_status");
             Log.d(TAG, "getIncomingIntents ======: "+imageurl);
-            setview(imageurl,imageissue,imagedesc);
+            setview(imageurl,imageissue,imagedesc,reportstatus);
 
 
         }
     }
 
-    private void setview(String imageur,String imageissue,String imagedesc){
+    private void setview(String imageur,String imageissue,String imagedesc,String status){
         TextView issue=findViewById(R.id.description_click);
         issue.setText(imageissue);
         TextView description=findViewById(R.id.typeddescription);
@@ -47,7 +48,8 @@ public class RecyclerViewClick extends AppCompatActivity {
         ImageView imageView=findViewById(R.id.imageview);
         imageView.setImageResource(photoarray.get(Integer.parseInt(imageur)));
 //        imageView.setImageResource(Integer.parseInt(imageur));
-
+        TextView t_status=findViewById(R.id.t_status);
+        t_status.setText("Status : "+status);
 
 
 

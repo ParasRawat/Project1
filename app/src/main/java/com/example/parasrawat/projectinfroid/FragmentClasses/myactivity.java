@@ -36,9 +36,9 @@ public class myactivity extends Fragment {
     private RecyclerView.Adapter adapter;
     ArrayList<Integer> photoarray=new ArrayList<>();
     ArrayList<String> issue=new ArrayList<>();
-    ArrayList<String> description=new ArrayList<>();
+    ArrayList<String> description=new ArrayList<>(),status=new ArrayList<>();
     public static final String TAG="myactivity";
-
+    TextView t_null;
     //TextView ratingmeter;
     @Nullable
     @Override
@@ -46,6 +46,9 @@ public class myactivity extends Fragment {
         view=inflater.inflate(R.layout.activity_my,container,false);
 
         final TextView tcount=view.findViewById(R.id.Contribution);
+        t_null=view.findViewById(R.id.t_null);
+        t_null.setVisibility(View.VISIBLE);
+        t_null.setText("Start Contributing \n By submitting help reports near you");
         //ratingmeter=view.findViewById(R.id.ratingcount);
 //        issue.add("Poverty");
 //        description.add("Poverty Description \n One of the major cause for Indias high reputation");
@@ -87,8 +90,12 @@ public class myactivity extends Fragment {
                                 photoarray.add(R.drawable.poverty);
                                 issue.add(report.getTitle());
                                 description.add(report.getDesc());
+                                status.add(report.getStatus());
 
-                                adapter=new HorizontalAdaptor(photoarray,issue,description,getContext());
+                                if(issue.size()!=0){
+                                    t_null.setVisibility(View.GONE);
+                                }
+                                adapter=new HorizontalAdaptor(photoarray,issue,description,status,getContext());
                                 recyclerView.setAdapter(adapter);
                                 tcount.setText("Total Contributions = "+issue.size());
                             }

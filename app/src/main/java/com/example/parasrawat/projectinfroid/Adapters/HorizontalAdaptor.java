@@ -26,12 +26,14 @@ public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.Vi
     ArrayList<Integer> photoarray;
     ArrayList<String > issue;
     ArrayList<String>  description;
+    ArrayList<String>  status;
     Context context;
 
-    public HorizontalAdaptor(ArrayList<Integer> photoarray, ArrayList<String> issue, ArrayList<String> description, Context context) {
+    public HorizontalAdaptor(ArrayList<Integer> photoarray, ArrayList<String> issue, ArrayList<String> description, ArrayList<String> status, Context context) {
         this.photoarray = photoarray;
         this.issue = issue;
         this.description = description;
+        this.status=status;
         this.context = context;
     }
 
@@ -58,6 +60,7 @@ public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.Vi
             intent.putExtra("image_url",String.valueOf(i));
             intent.putExtra("image_issue",issue.get(i));
             intent.putExtra("image_desc",description.get(i));
+            intent.putExtra("report_status",status.get(i));
             context.startActivity(intent);
 
         }

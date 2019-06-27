@@ -188,7 +188,7 @@ public class reportclass extends Fragment {
     }
 
     private void selectImage(){
-        final CharSequence[] options={"Take Photo","Choose from Gallery","Cancel"};
+        final CharSequence[] options={"Choose from Gallery","Cancel"};
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
         builder.setTitle("Add Photo");
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -196,8 +196,8 @@ public class reportclass extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(options[i].equals("Take Photo")){
                     Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File f=new File(android.os.Environment.getExternalStorageDirectory(),"temp.jpg");
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                    //File f=new File(android.os.Environment.getExternalStorageDirectory(),"temp.jpg");
+                    //intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
                     startActivityForResult(intent,1);
                 }
                 else if(options[i].equals("Choose from Gallery")){
@@ -252,6 +252,9 @@ public class reportclass extends Fragment {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
+//                Bundle extras = data.getExtras();
+//                Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                imageView.setImageBitmap(imageBitmap);
             }
             else if(requestCode==2 && data!=null && data.getData()!=null){
                 Uri selectedimg=data.getData();
@@ -262,6 +265,8 @@ public class reportclass extends Fragment {
 //                String picturePath = c.getString(columnIndex);
 //                c.close();
 //                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                //imguris.add(selectedimg.toString());
+                imageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(selectedimg).into(imageView);
             }
         }
