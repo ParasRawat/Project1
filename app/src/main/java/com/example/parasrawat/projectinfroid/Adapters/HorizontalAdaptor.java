@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.parasrawat.projectinfroid.ContentUploader;
+import com.example.parasrawat.projectinfroid.ModelClasses.Report;
 import com.example.parasrawat.projectinfroid.R;
 import com.example.parasrawat.projectinfroid.RecyclerViewClick;
 
@@ -24,16 +25,12 @@ import static com.example.parasrawat.projectinfroid.MainActivity.TAG;
 
 public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.ViewHolder> {
     ArrayList<Integer> photoarray;
-    ArrayList<String > issue;
-    ArrayList<String>  description;
-    ArrayList<String>  status;
+    ArrayList<Report > reports;
     Context context;
 
-    public HorizontalAdaptor(ArrayList<Integer> photoarray, ArrayList<String> issue, ArrayList<String> description, ArrayList<String> status, Context context) {
+    public HorizontalAdaptor(ArrayList<Integer> photoarray, ArrayList<Report> reports, Context context) {
         this.photoarray = photoarray;
-        this.issue = issue;
-        this.description = description;
-        this.status=status;
+        this.reports=reports;
         this.context = context;
     }
 
@@ -50,17 +47,15 @@ public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.Vi
     @Override
     public void onBindViewHolder(@NonNull final HorizontalAdaptor.ViewHolder viewHolder, final int i) {
     viewHolder.imageView.setImageResource(photoarray.get(i));
-    viewHolder.issue.setText(issue.get(i));
-    viewHolder.description.setText(description.get(i));
+    final Report report=reports.get(i);
+    viewHolder.issue.setText(report.getTitle());
+    viewHolder.description.setText(report.getDesc());
     viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent=new Intent(context, RecyclerViewClick.class);
             Log.d(TAG, "================================ "+i);
-            intent.putExtra("image_url",String.valueOf(i));
-            intent.putExtra("image_issue",issue.get(i));
-            intent.putExtra("image_desc",description.get(i));
-            intent.putExtra("report_status",status.get(i));
+            intent.putExtra("report",report);
             context.startActivity(intent);
 
         }

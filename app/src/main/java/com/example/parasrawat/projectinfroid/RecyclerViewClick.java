@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.parasrawat.projectinfroid.ModelClasses.Report;
+
 import java.util.ArrayList;
 
 public class RecyclerViewClick extends AppCompatActivity {
@@ -19,40 +21,57 @@ public class RecyclerViewClick extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerviewclicklayout);
+
         photoarray.add(R.drawable.poverty);
-        photoarray.add(R.drawable.childlabour);
-        photoarray.add(R.drawable.garbage);
-        photoarray.add(R.drawable.women);
+
         getIncomingIntents();
 
 
     }
     private void getIncomingIntents(){
-        if(getIntent().hasExtra("image_url") && getIntent().hasExtra("image_issue") && getIntent().hasExtra("image_desc")){
-            String imageurl=getIntent().getStringExtra("image_url");
-            String imageissue=getIntent().getStringExtra("image_issue");
-            String imagedesc=getIntent().getStringExtra("image_desc");
-            String reportstatus=getIntent().getStringExtra("report_status");
-            Log.d(TAG, "getIncomingIntents ======: "+imageurl);
-            setview(imageurl,imageissue,imagedesc,reportstatus);
-
-
+//        if(getIntent().hasExtra("image_url") && getIntent().hasExtra("image_issue") && getIntent().hasExtra("image_desc")){
+//            String imageurl=getIntent().getStringExtra("image_url");
+//            String imageissue=getIntent().getStringExtra("image_issue");
+//            String imagedesc=getIntent().getStringExtra("image_desc");
+//            String reportstatus=getIntent().getStringExtra("report_status");
+//            Log.d(TAG, "getIncomingIntents ======: "+imageurl);
+//            setview(imageurl,imageissue,imagedesc,reportstatus);
+//
+//
+//        }
+        if(getIntent().hasExtra("report")){
+            Report report=(Report) getIntent().getSerializableExtra("report");
+            setView(report);
         }
     }
 
-    private void setview(String imageur,String imageissue,String imagedesc,String status){
-        TextView issue=findViewById(R.id.description_click);
-        issue.setText(imageissue);
-        TextView description=findViewById(R.id.typeddescription);
-        description.setText(imagedesc);
-        ImageView imageView=findViewById(R.id.imageview);
-        imageView.setImageResource(photoarray.get(Integer.parseInt(imageur)));
-//        imageView.setImageResource(Integer.parseInt(imageur));
+//    private void setview(String imageur,String imageissue,String imagedesc,String status){
+//        TextView issue=findViewById(R.id.t_title);
+//        issue.setText(imageissue);
+//        TextView description=findViewById(R.id.t_desc);
+//        description.setText(imagedesc);
+//        ImageView imageView=findViewById(R.id.imageview);
+//        imageView.setImageResource(photoarray.get(Integer.parseInt(imageur)));
+////        imageView.setImageResource(Integer.parseInt(imageur));
+//        TextView t_status=findViewById(R.id.t_status);
+//        t_status.setText("Status : "+status);
+//
+//
+//
+//    }
+
+    private void setView(Report report){
+        TextView issue=findViewById(R.id.t_title);
+        issue.setText(report.getTitle());
         TextView t_status=findViewById(R.id.t_status);
-        t_status.setText("Status : "+status);
-
-
-
+        t_status.setText(report.getStatus());
+        TextView t_category=findViewById(R.id.t_category);
+        t_category.setText(report.getType());
+        TextView description=findViewById(R.id.t_desc);
+        description.setText(report.getDesc());
+        //TODO retrieve image
+        ImageView imageView=findViewById(R.id.imageview);
+        imageView.setImageResource(photoarray.get(0));
     }
 
 }

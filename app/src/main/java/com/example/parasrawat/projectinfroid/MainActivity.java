@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success google");
                             //FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(MainActivity.this,ContentUploader.class));
-                            Toast.makeText(MainActivity.this,"User successfully logged in ",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,"Welcome to NGO-Hub !!!",Toast.LENGTH_LONG).show();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success fa");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(MainActivity.this,"Welcome",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,"Welcome to NGO-Hub",Toast.LENGTH_LONG).show();
                             startActivity(new Intent(MainActivity.this,ContentUploader.class));
                             updateUI();
                         } else {

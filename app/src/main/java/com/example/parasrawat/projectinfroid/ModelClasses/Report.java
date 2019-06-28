@@ -1,8 +1,9 @@
 package com.example.parasrawat.projectinfroid.ModelClasses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Report {
+public class Report implements Serializable {
 
     String byuser,title,type,desc,place,time,status;
     ArrayList<String> imguris=new ArrayList<>();

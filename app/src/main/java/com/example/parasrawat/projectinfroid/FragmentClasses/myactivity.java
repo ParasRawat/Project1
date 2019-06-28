@@ -39,6 +39,7 @@ public class myactivity extends Fragment {
     ArrayList<String> description=new ArrayList<>(),status=new ArrayList<>();
     public static final String TAG="myactivity";
     TextView t_null;
+    ArrayList<Report> reports=new ArrayList<>();
     //TextView ratingmeter;
     @Nullable
     @Override
@@ -48,7 +49,7 @@ public class myactivity extends Fragment {
         final TextView tcount=view.findViewById(R.id.Contribution);
         t_null=view.findViewById(R.id.t_null);
         t_null.setVisibility(View.VISIBLE);
-        t_null.setText("Start Contributing \n By submitting help reports near you");
+        t_null.setText("Start Contributing \n By using Seek Help option");
         //ratingmeter=view.findViewById(R.id.ratingcount);
 //        issue.add("Poverty");
 //        description.add("Poverty Description \n One of the major cause for Indias high reputation");
@@ -88,16 +89,17 @@ public class myactivity extends Fragment {
                                 Report report=dataSnapshot.getValue(Report.class);
                                 Log.d(TAG+"datasn",dataSnapshot.getValue().toString());
                                 photoarray.add(R.drawable.poverty);
-                                issue.add(report.getTitle());
-                                description.add(report.getDesc());
-                                status.add(report.getStatus());
+//                                issue.add(report.getTitle());
+//                                description.add(report.getDesc());
+//                                status.add(report.getStatus());
+                                reports.add(report);
 
-                                if(issue.size()!=0){
+                                if(reports.size()!=0){
                                     t_null.setVisibility(View.GONE);
                                 }
-                                adapter=new HorizontalAdaptor(photoarray,issue,description,status,getContext());
+                                adapter=new HorizontalAdaptor(photoarray,reports,getContext());
                                 recyclerView.setAdapter(adapter);
-                                tcount.setText("Total Contributions = "+issue.size());
+                                tcount.setText("Total Contributions = "+reports.size());
                             }
 
                             @Override

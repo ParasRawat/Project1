@@ -9,7 +9,7 @@
     
 
     <string-array name="issue">
-        <item>Issue</item>
+        <item>What is the Category ?</item>
         <item>Poverty</item>
         <item>Health</item>
         <item>Pollution</item>

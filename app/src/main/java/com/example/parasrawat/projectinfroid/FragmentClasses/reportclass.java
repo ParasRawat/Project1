@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -67,7 +68,7 @@ public class reportclass extends Fragment {
         view=inflater.inflate(R.layout.demoreport,container,false);
 //        toggle.syncState();
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        CardView addimg=view.findViewById(R.id.addimg);
+        ImageView addimg=view.findViewById(R.id.addimg);
         imageView=view.findViewById(R.id.imgv1);
         spinner=view.findViewById(R.id.issuespinner);
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(getContext(),R.array.issue,android.R.layout.simple_spinner_item);
@@ -139,7 +140,13 @@ public class reportclass extends Fragment {
                             dbrefu.child(user.getUsername()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(getContext(), "Thankyou for being a good citizen :)", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "Thank You for your contribution!", Toast.LENGTH_LONG).show();
+
+                                    getFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new myactivity()).commit();
+                                    View v=getLayoutInflater().inflate(R.layout.activity_content_uploader,null);
+                                    NavigationView nav=v.findViewById(R.id.navigationbar);
+                                    nav.setCheckedItem(R.id.contributions);
+
                                 }
                             });
                         }

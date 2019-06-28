@@ -4,8 +4,8 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-    <item android:id="@+id/seekhelp" android:title="Seek Help" android:icon="@drawable/report"/>
-    <item android:id="@+id/contributions" android:title="My Contributions" android:icon="@drawable/activity"/>
+    <item android:id="@+id/seekhelp" android:title="Seek Help" android:icon="@drawable/helpicon"/>
+    <item android:id="@+id/contributions" android:title="My Contributions" android:icon="@drawable/contriicon"/>
     </group>
 
     <item android:title="Logout">
