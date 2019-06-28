@@ -135,7 +135,7 @@ public class reportclass extends Fragment {
                             user=dataSnapshot.getValue(User.class);
                             HashMap<String,String> contris=new HashMap<>();
                             if(user.getContributions()!=null) contris=user.getContributions();
-                            contris.put(report.getType(),key);
+                            contris.put(key,report.getType());
                             user.setContributions(contris);
                             dbrefu.child(user.getUsername()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

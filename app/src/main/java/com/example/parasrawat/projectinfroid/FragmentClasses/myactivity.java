@@ -82,8 +82,8 @@ public class myactivity extends Fragment {
                 if(user.getContributions()!=null) {
                     contris = user.getContributions();
                     for (HashMap.Entry<String,String> entry:contris.entrySet()) {
-                        Log.d(TAG+"contriid",entry.getValue());
-                        dbrefc.child(entry.getKey()).child(entry.getValue()).addValueEventListener(new ValueEventListener() {
+                        Log.d(TAG+"contriid",entry.getKey());
+                        dbrefc.child(entry.getValue()).child(entry.getKey()).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Report report=dataSnapshot.getValue(Report.class);
