@@ -110,8 +110,6 @@ public class ContentUploader extends AppCompatActivity implements NavigationView
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             finishAffinity();
-            //finishActivity(0);
-           //startActivity(new Intent(ContentUploader.this,IntroSlider.class));
         }
 
     }

@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class myactivity extends Fragment {
+
     View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -40,7 +41,7 @@ public class myactivity extends Fragment {
     public static final String TAG="myactivity";
     TextView t_null;
     ArrayList<Report> reports=new ArrayList<>();
-    //TextView ratingmeter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,18 +51,6 @@ public class myactivity extends Fragment {
         t_null=view.findViewById(R.id.t_null);
         t_null.setVisibility(View.VISIBLE);
         t_null.setText("Start Contributing \n By using Seek Help option");
-        //ratingmeter=view.findViewById(R.id.ratingcount);
-//        issue.add("Poverty");
-//        description.add("Poverty Description \n One of the major cause for Indias high reputation");
-//        photoarray.add(R.drawable.childlabour);
-//        issue.add("ChildLabour");
-//        description.add("Child labour description \n Key factor to hamper tha hampers the youth of our country");
-//        photoarray.add(R.drawable.garbage);
-//        issue.add("Garbage");
-//        description.add("Garbage description \n The current issue targetted by our government under SWATCH BHARAT ABHIYAN");
-//        photoarray.add(R.drawable.women);
-//        issue.add("Feminism");
-//        description.add("Feminism description \n Need of equal rights for men and women");
 
         recyclerView=view.findViewById(R.id.horizontalrecyclerview);
         recyclerView.setHasFixedSize(true);
@@ -89,9 +78,6 @@ public class myactivity extends Fragment {
                                 Report report=dataSnapshot.getValue(Report.class);
                                 Log.d(TAG+"datasn",dataSnapshot.getValue().toString());
                                 photoarray.add(R.drawable.poverty);
-//                                issue.add(report.getTitle());
-//                                description.add(report.getDesc());
-//                                status.add(report.getStatus());
                                 reports.add(report);
 
                                 if(reports.size()!=0){

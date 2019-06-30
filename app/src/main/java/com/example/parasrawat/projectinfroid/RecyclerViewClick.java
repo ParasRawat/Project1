@@ -29,36 +29,11 @@ public class RecyclerViewClick extends AppCompatActivity {
 
     }
     private void getIncomingIntents(){
-//        if(getIntent().hasExtra("image_url") && getIntent().hasExtra("image_issue") && getIntent().hasExtra("image_desc")){
-//            String imageurl=getIntent().getStringExtra("image_url");
-//            String imageissue=getIntent().getStringExtra("image_issue");
-//            String imagedesc=getIntent().getStringExtra("image_desc");
-//            String reportstatus=getIntent().getStringExtra("report_status");
-//            Log.d(TAG, "getIncomingIntents ======: "+imageurl);
-//            setview(imageurl,imageissue,imagedesc,reportstatus);
-//
-//
-//        }
         if(getIntent().hasExtra("report")){
             Report report=(Report) getIntent().getSerializableExtra("report");
             setView(report);
         }
     }
-
-//    private void setview(String imageur,String imageissue,String imagedesc,String status){
-//        TextView issue=findViewById(R.id.t_title);
-//        issue.setText(imageissue);
-//        TextView description=findViewById(R.id.t_desc);
-//        description.setText(imagedesc);
-//        ImageView imageView=findViewById(R.id.imageview);
-//        imageView.setImageResource(photoarray.get(Integer.parseInt(imageur)));
-////        imageView.setImageResource(Integer.parseInt(imageur));
-//        TextView t_status=findViewById(R.id.t_status);
-//        t_status.setText("Status : "+status);
-//
-//
-//
-//    }
 
     private void setView(Report report){
         TextView issue=findViewById(R.id.t_title);

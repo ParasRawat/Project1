@@ -46,23 +46,19 @@ public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.Vi
 
     @Override
     public void onBindViewHolder(@NonNull final HorizontalAdaptor.ViewHolder viewHolder, final int i) {
-    viewHolder.imageView.setImageResource(photoarray.get(i));
-    final Report report=reports.get(i);
-    viewHolder.issue.setText(report.getTitle());
-    viewHolder.description.setText(report.getDesc());
-    viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent=new Intent(context, RecyclerViewClick.class);
-            Log.d(TAG, "================================ "+i);
-            intent.putExtra("report",report);
-            context.startActivity(intent);
+        viewHolder.imageView.setImageResource(photoarray.get(i));
+        final Report report=reports.get(i);
+        viewHolder.issue.setText(report.getTitle());
+        viewHolder.description.setText(report.getDesc());
+        viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, RecyclerViewClick.class);
+                intent.putExtra("report",report);
+                context.startActivity(intent);
 
-        }
-    });
-
-
-
+            }
+        });
     }
 
     @Override
