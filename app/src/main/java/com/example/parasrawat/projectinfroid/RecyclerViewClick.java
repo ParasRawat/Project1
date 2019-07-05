@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.parasrawat.projectinfroid.ModelClasses.Report;
@@ -22,7 +23,7 @@ public class RecyclerViewClick extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerviewclicklayout);
 
-        photoarray.add(R.drawable.poverty);
+        //photoarray.add(R.drawable.poverty);
 
         getIncomingIntents();
 
@@ -45,8 +46,10 @@ public class RecyclerViewClick extends AppCompatActivity {
         TextView description=findViewById(R.id.t_desc);
         description.setText(report.getDesc());
         //TODO retrieve image
-        ImageView imageView=findViewById(R.id.imageview);
-        imageView.setImageResource(photoarray.get(0));
+//        if(photoarray.get(0)!=null){
+//            ImageView imageView=findViewById(R.id.imageview);
+//            imageView.setImageResource(photoarray.get(0));
+//        }
     }
 
 }

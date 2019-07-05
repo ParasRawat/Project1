@@ -13,12 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.parasrawat.projectinfroid.ModelClasses.User;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.github.ybq.android.spinkit.style.DoubleBounce;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     public static final String TAG="MAIN ACTIVITY KE INSIDE";
-    public CallbackManager mCallbackManager;
+//    public CallbackManager mCallbackManager;
     //LoginButton loginButton;
     ImageView singin;
     ProgressBar progress;
@@ -85,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mCallbackManager = CallbackManager.Factory.create();
+//        mCallbackManager = CallbackManager.Factory.create();
 
         //FACEBOOK LOGIN CODE NOT WORKING
 //         loginButton = findViewById(R.id.login_button);
@@ -132,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-       mCallbackManager.onActivityResult(requestCode,resultCode,data);
+       //mCallbackManager.onActivityResult(requestCode,resultCode,data);
         Log.d(TAG, "onActivityResult: "+requestCode+resultCode+data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
@@ -205,32 +199,32 @@ public class MainActivity extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success fa");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(MainActivity.this,"Welcome to NGO-Hub",Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(MainActivity.this,ContentUploader.class));
-                            updateUI();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI();
-                        }
-
-                        // ...
-                    }
-                });
-    }
+//    private void handleFacebookAccessToken(AccessToken token) {
+//        Log.d(TAG, "handleFacebookAccessToken:" + token);
+//
+//        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success fa");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            Toast.makeText(MainActivity.this,"Welcome to NGO-Hub",Toast.LENGTH_LONG).show();
+//                            startActivity(new Intent(MainActivity.this,ContentUploader.class));
+//                            updateUI();
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Toast.makeText(MainActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
+//                            updateUI();
+//                        }
+//
+//                        // ...
+//                    }
+//                });
+//    }
 
 }

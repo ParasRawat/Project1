@@ -16,6 +16,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -142,10 +144,10 @@ public class reportclass extends Fragment {
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getContext(), "Thank You for your contribution!", Toast.LENGTH_LONG).show();
 
+//                                    View v=getLayoutInflater().inflate(R.layout.activity_content_uploader,null);
+//                                    NavigationView nav=v.findViewById(R.id.navigationbar);
+//                                    nav.setCheckedItem(R.id.contributions);
                                     getFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new myactivity()).commit();
-                                    View v=getLayoutInflater().inflate(R.layout.activity_content_uploader,null);
-                                    NavigationView nav=v.findViewById(R.id.navigationbar);
-                                    nav.setCheckedItem(R.id.contributions);
 
                                 }
                             });
