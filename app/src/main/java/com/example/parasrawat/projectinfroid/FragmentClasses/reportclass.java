@@ -25,6 +25,7 @@ import com.example.parasrawat.projectinfroid.ModelClasses.Report;
 import com.example.parasrawat.projectinfroid.ModelClasses.User;
 import com.example.parasrawat.projectinfroid.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -135,9 +136,8 @@ public class reportclass extends Fragment {
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getContext(), "Thank You for your contribution!", Toast.LENGTH_LONG).show();
 
-//                                    View v=getLayoutInflater().inflate(R.layout.activity_content_uploader,null);
-//                                    NavigationView nav=v.findViewById(R.id.navigationbar);
-//                                    nav.setCheckedItem(R.id.contributions);
+                                    NavigationView nav=getActivity().findViewById(R.id.navigationbar);
+                                    nav.setCheckedItem(R.id.contributions);
                                     getFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new myactivity()).commit();
 
                                 }
