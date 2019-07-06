@@ -1,52 +1,45 @@
 {
   "project_info": {
-    "project_number": "711145987951",
-    "firebase_url": "https://infroid-af7d5.firebaseio.com",
-    "project_id": "infroid-af7d5",
-    "storage_bucket": "infroid-af7d5.appspot.com"
+    "project_number": "638131037217",
+    "firebase_url": "https://ngo-hub-client.firebaseio.com",
+    "project_id": "ngo-hub-client",
+    "storage_bucket": "ngo-hub-client.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:711145987951:android:1c0ed034d2f43af6",
+        "mobilesdk_app_id": "1:638131037217:android:1c0ed034d2f43af6",
         "android_client_info": {
           "package_name": "com.example.parasrawat.projectinfroid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "711145987951-l7ecvmihsjskb6t63hi02a4qkscm6gph.apps.googleusercontent.com",
+          "client_id": "638131037217-grgra57rfarqmh8v2gtoip63mi5hei38.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.parasrawat.projectinfroid",
-            "certificate_hash": "895d2f42f5bb41d5fdea479be1cba583facb2090"
+            "certificate_hash": "e1214ebb75f0bc5685c58f92faca253cec6c05da"
           }
         },
         {
-          "client_id": "711145987951-a28p5sj2megtgdg1m0i7mrlvmdqmg2ms.apps.googleusercontent.com",
+          "client_id": "638131037217-ebrdfb2ahvt8uefes7e26kndactk1rgc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFQClSwSx6WAFGG0Ycg6dpne3PfRcLxEE"
+          "current_key": "AIzaSyDcBpCy736Cir5F8FU9wruOFwn5em8-Zdc"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "711145987951-a28p5sj2megtgdg1m0i7mrlvmdqmg2ms.apps.googleusercontent.com",
+              "client_id": "638131037217-ebrdfb2ahvt8uefes7e26kndactk1rgc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
