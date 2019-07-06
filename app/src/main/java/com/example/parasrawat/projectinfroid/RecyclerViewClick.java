@@ -1,13 +1,9 @@
 package com.example.parasrawat.projectinfroid;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.ScrollView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.TextView;
 
 import com.example.parasrawat.projectinfroid.ModelClasses.Report;

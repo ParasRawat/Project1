@@ -1,15 +1,19 @@
     package com.example.parasrawat.projectinfroid;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
     public class IntroSlider extends AppCompatActivity {
-    private ImageView imageView1,imageView2;
+    private ImageView imageView1;
+    TextView imageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,9 @@ import android.widget.TextView;
                     e.printStackTrace();
                 }
                 finally {
-                        startActivity(new Intent(IntroSlider.this,MainActivity.class));
+                    FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                    if(user!=null) startActivity(new Intent(IntroSlider.this,ContentUploader.class));
+                    else startActivity(new Intent(IntroSlider.this,OnBoardingActivity.class));
                 }
             }
         };

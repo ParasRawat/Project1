@@ -2,33 +2,25 @@ package com.example.parasrawat.projectinfroid.FragmentClasses;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.parasrawat.projectinfroid.MainActivity;
 import com.example.parasrawat.projectinfroid.ModelClasses.Report;
 import com.example.parasrawat.projectinfroid.ModelClasses.User;
 import com.example.parasrawat.projectinfroid.R;
@@ -41,11 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,6 +49,7 @@ public class reportclass extends Fragment {
     DatabaseReference dbrefc,dbrefu;
     User user=new User();
     ImageView imageView;
+    ProgressBar progress;
 
     @Nullable
     @Override
@@ -70,6 +58,8 @@ public class reportclass extends Fragment {
         view=inflater.inflate(R.layout.demoreport,container,false);
 //        toggle.syncState();
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        progress=view.findViewById(R.id.progress);
+        progress.setVisibility(View.GONE);
         ImageView addimg=view.findViewById(R.id.addimg);
         imageView=view.findViewById(R.id.imgv1);
         spinner=view.findViewById(R.id.issuespinner);
@@ -118,6 +108,7 @@ public class reportclass extends Fragment {
                     valid=false;
                 }
                 if(valid){
+                    progress.setVisibility(View.VISIBLE);
                     //push contribution data in contributions table
                     final Report report=new Report();
                     report.setByuser(user.getUsername());
