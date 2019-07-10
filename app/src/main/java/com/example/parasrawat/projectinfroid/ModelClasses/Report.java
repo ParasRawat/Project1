@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Report implements Serializable {
 
-    String byuser,title,type,desc,place,time,status;
+    String byuser,title,type,desc,place,time,status,key;
     ArrayList<String> imguris=new ArrayList<>();
 
     public Report(){
@@ -74,5 +74,13 @@ public class Report implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

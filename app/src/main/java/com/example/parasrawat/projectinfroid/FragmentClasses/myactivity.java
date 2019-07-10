@@ -32,9 +32,6 @@ public class myactivity extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-    ArrayList<Integer> photoarray=new ArrayList<>();
-    ArrayList<String> issue=new ArrayList<>();
-    ArrayList<String> description=new ArrayList<>(),status=new ArrayList<>();
     public static final String TAG="myactivity";
     TextView t_null;
     ArrayList<Report> reports=new ArrayList<>();
@@ -67,21 +64,21 @@ public class myactivity extends Fragment {
                 HashMap<String,String> contris=new HashMap<>();
                 if(user.getContributions()!=null) {
                     contris = user.getContributions();
-                    for (HashMap.Entry<String,String> entry:contris.entrySet()) {
+                    for (final HashMap.Entry<String,String> entry:contris.entrySet()) {
                         Log.d(TAG+"contriid",entry.getKey());
                         dbrefc.child(entry.getValue()).child(entry.getKey()).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Report report=dataSnapshot.getValue(Report.class);
-                                Log.d(TAG+"datasn",dataSnapshot.getValue().toString());
-                                photoarray.add(R.drawable.poverty);
+                                report.setKey(entry.getKey());
                                 reports.add(report);
 
                                 if(reports.size()!=0){
                                     t_null.setVisibility(View.GONE);
                                 }
-                                adapter=new HorizontalAdaptor(photoarray,reports,getContext());
+                                adapter=new HorizontalAdaptor(reports,getContext());
                                 recyclerView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
                                 tcount.setText("Total Contributions = "+reports.size());
                             }
 

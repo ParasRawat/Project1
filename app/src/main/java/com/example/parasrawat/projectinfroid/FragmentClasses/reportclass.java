@@ -32,6 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -48,9 +51,11 @@ public class reportclass extends Fragment {
     String title,type,desc;
     ArrayList<String> imguris=new ArrayList<>();
     DatabaseReference dbrefc,dbrefu;
+    StorageReference strref;
     User user=new User();
     ImageView imageView;
     ProgressBar progress;
+    Uri selectedimg;
 
     @Nullable
     @Override
@@ -70,6 +75,7 @@ public class reportclass extends Fragment {
         CardView submit=view.findViewById(R.id.b_submit);
         dbrefc=FirebaseDatabase.getInstance().getReference("Contributions");
         dbrefu=FirebaseDatabase.getInstance().getReference("Users");
+        strref=FirebaseStorage.getInstance().getReference();
 
         //set user email from shared preferences
         final String username=FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
@@ -121,6 +127,7 @@ public class reportclass extends Fragment {
                     report.setTime(curr.toString());
                     final String key=dbrefc.child(type).push().getKey();
                     dbrefc.child(type).child(key).setValue(report);
+                    uploadImage(type,key);
 
                     //push contirbution id in user table
                     dbrefu.child(user.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -257,7 +264,7 @@ public class reportclass extends Fragment {
 //                imageView.setImageBitmap(imageBitmap);
             }
             else if(requestCode==2 && data!=null && data.getData()!=null){
-                Uri selectedimg=data.getData();
+                selectedimg=data.getData();
 //                String[] filePath = { MediaStore.Images.Media.DATA };
 //                Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
 //                c.moveToFirst();
@@ -268,7 +275,14 @@ public class reportclass extends Fragment {
                 //imguris.add(selectedimg.toString());
                 imageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(selectedimg).into(imageView);
+                imguris.add(selectedimg.toString());
             }
+        }
+    }
+
+    public void uploadImage(String type,String key){
+        if(selectedimg!=null){
+            strref.child("HelpImages").child(type).child(key).putFile(selectedimg);
         }
     }
 }

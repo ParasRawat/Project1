@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +16,19 @@ import android.widget.TextView;
 import com.example.parasrawat.projectinfroid.ModelClasses.Report;
 import com.example.parasrawat.projectinfroid.R;
 import com.example.parasrawat.projectinfroid.RecyclerViewClick;
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.ViewHolder> {
-    ArrayList<Integer> photoarray;
     ArrayList<Report > reports;
     Context context;
 
-    public HorizontalAdaptor(ArrayList<Integer> photoarray, ArrayList<Report> reports, Context context) {
-        this.photoarray = photoarray;
+    public HorizontalAdaptor(ArrayList<Report> reports, Context context) {
         this.reports=reports;
         this.context = context;
     }
@@ -45,20 +49,29 @@ public class HorizontalAdaptor extends RecyclerView.Adapter<HorizontalAdaptor.Vi
         final Report report=reports.get(i);
         viewHolder.issue.setText(report.getTitle());
         viewHolder.description.setText(report.getDesc());
+        ArrayList<String> imgarray=report.getImguris();
+        if(imgarray!=null){
+            StorageReference strref=FirebaseStorage.getInstance().getReference();
+            strref.child("HelpImages").child(report.getType()).child(report.getKey()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).into(viewHolder.imageView);
+                }
+            });
+        }
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, RecyclerViewClick.class);
                 intent.putExtra("report",report);
                 context.startActivity(intent);
-
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return photoarray.size();
+        return reports.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
